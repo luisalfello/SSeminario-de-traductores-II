@@ -33,7 +33,7 @@ Pruebas:
 
 Ejercicio1
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/68695c6c-93fa-4bb5-8815-277cf02de15b)
+
 
 Ejercicio2
 
