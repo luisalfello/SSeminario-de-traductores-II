@@ -1,9 +1,34 @@
+
+
+class ElementoPila:
+    def __init__(self):
+        self.simbolo = None
+    
+    def tipo():
+        return False
+
+class Estado(ElementoPila):
+    def __init__(self, simbolo):
+        self.simbolo = simbolo
+        self.tipo = 'Estado'
+
+class Terminal(ElementoPila):
+    def __init__(self, simbolo):
+        self.simbolo = simbolo
+        self.tipo = 'Terminal'
+
+class NoTerminal(ElementoPila):
+    def __init__(self, simbolo):
+        self.simbolo = simbolo
+        self.tipo = 'noTerminal'
+
+########################################################################
+##############                    PILA                    ##############
+########################################################################
+
 class Pila:
     def __init__(self):
         self.items = []
-
-    def empty(self):
-        return self.items == []
 
     def push(self, item):
         self.items.append(item)
@@ -12,12 +37,17 @@ class Pila:
         return self.items.pop()
 
     def show(self):
-        for i in range(len(self.items)):
-            print(self.items[i],end=" ")
         print('\n')
+        for obj in self.items:
+            print(obj.simbolo ,end=" ")
+        print('\n')
+    
+    def tipo(self):
+        for i in range(1,3):
+            print(f'Agregado: {self.items[-i].simbolo} de tipo: {self.items[-i].tipo}',end=" ")
+        
+        
 
     def top(self):
-        return self.items[len(self.items)-1]
-
-    def size(self):
-        return len(self.items)
+        return self.items[-1].simbolo
+    
