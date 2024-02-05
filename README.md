@@ -47,7 +47,9 @@ Caso error
 
 ![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/0cbfe214-547f-48aa-9672-30eb01938473)
 
-Modificaciones a la version anterior-------------------------
+---------------------------------------------------------------
+------------Modificaciones a la version anterior---------------
+---------------------------------------------------------------
 
 Pila:
 
