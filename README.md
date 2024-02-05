@@ -53,12 +53,13 @@ Caso error
 
 Pila:
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-
-II/assets/84816868/0c53b581-55b9-4902-a8b1-8eb96a0fea25)
+![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/0c39671a-20fb-4a45-8365-07857a789cd6)
+
 
 Clases agreagadas:
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/afbd7743-cb93-4e37-9d48-006cee910589)
+![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/d95aa6f8-6e78-4842-ad6c-0aea6fe2bd34)
+
 
 Se agregan elemntos a la pila segun el tipo:
 
