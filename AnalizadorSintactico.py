@@ -1,78 +1,71 @@
 from Pila import *
+from AnalizadorLexico import *
 
-def SelectType(elem):
-    if elem == '+':
-        return 1
-    elif elem == '$':
-        return 2
-    else:
-        return 0
-
-if __name__=='__main__':
-    Ejercicio1 = "hola +"
-    Ejercicio2 = "a + b + c + d + e + f"
-    cadena = Ejercicio1
-    pila = Pila()
-    #######################################
-    tablaLR = [[2, 0, 0, 1],
-               [0, 0,-1, 0],
-               [0, 3,-3, 0],
-               [2, 0, 0, 4],
-               [0, 0,-2, 0]]
-
-    pila.push('$')
-    pila.push(0)
-    
-    accion = 0
-    cadena = cadena.split()
-    cadena.append('$')
-
-    iter = 0
-
-    print(f'Cadena a analizar: {cadena}')
-
-    while accion != -1:
-        # Analizamos la accion que se realizara, 
-        # segun los elemtos de la tabla
-        fila = pila.top()                       # Ultimo elemento de la pila
-        columna = SelectType(cadena[iter])      # Tipo de dato
-        accion = tablaLR[fila][columna]         # Accion que se realizara
-        pila.show()
+class AnalizadorSintactico:
+    def __init__(self,tablaLR,str,vectores):
+        self.pila = Pila()
+        self.tablaLR = tablaLR
+        lexico = analizadorLexico()
+        self.cadena = lexico.separador(str)
+        self.tipo = lexico.Analisis(self.cadena)
+        self.vectores = vectores
         
-        if accion > 0:
-            # Desplaza si es positivo la accion
-            pila.push(cadena[iter])
-            pila.push(accion)
-            iter += 1
-            #if iter > len(cadena)+8:break
-        elif accion < 0:
-            # Eliminamos elementos segun la regla en la que caimos para validar
-            if accion == -1:
-                print(f'Elemento valido...') 
-                if regla == -2:
-                    print(f'Regla aplicada: E-> id + E')
-                elif regla == -3:
-                    print(f'Regla aplicada: e -> id')
-                break
-            elif accion == -2:# Regla E -> id + id 
-                # Reduce
-                for i in range(6):
-                    pila.pop()
-            elif accion == -3: # Regla E -> id
-                pila.pop()
-                pila.pop()
-            regla = accion
-            fila = pila.top()
-            columna = 3
-            accion = tablaLR[fila][columna]
 
-            # Agregamos nuevos elemtos a la pila para validar la regla
-            pila.push('E')
-            pila.push(accion)
-        else: 
-            print(f'Elemento invalido...')
-            break
-    
-# agregar que regla fue la que cumplio los objetivos.
-    
+    def Analisis(self):
 
+        self.pila.push(Terminal('$'))
+        self.pila.push(Estado(0))
+
+        accion = 0
+
+
+        print(f'Cadena a analizar: ')
+        """for i in self.cadena:
+            print(' '.join(i))"""
+        
+        simbolo = 0
+        contador = 1
+        j = 0
+        while j < len(self.cadena):
+            i = 0
+            while i < len(self.cadena[j]):
+                # Analizamos la accion que se realizara, 
+                # segun los elemtos de la tabla
+                fila = self.pila.top()                       # Ultimo elemento de la pila
+                columna = self.tipo[simbolo]                 # Tipo de dato
+                accion = self.tablaLR[fila][columna]         # Accion que se realizara
+                print(f'Iteracion: {contador}')
+                #print(f'>>>>accion: {accion}, item: {self.cadena[j][i]}')
+                self.pila.show()
+
+                if accion > 0:
+                    # Desplaza si es positivo la accion
+                    self.pila.push(Terminal(self.cadena[j][i]))
+                    self.pila.push(Estado(accion))
+                    simbolo += 1
+                    i += 1
+                elif accion < 0:
+                    if accion == -1:
+                        print('cadena valida...')
+                        break
+                    # Eliminamos elementos segun la regla en la que caimos para validar
+                    regla = abs(accion)-1
+                    #print(f'regla: {regla} pop: {self.vectores[regla-1][1]}')
+                    for pop in range(self.vectores[regla-1][1]*2):
+                        self.pila.pop()
+                    fila = self.pila.top()
+                    columna = self.vectores[regla-1][0]
+                    accion = self.tablaLR[fila][columna]
+
+                    # Agregamos nuevos elemtos a la pila para validar la regla
+                    self.pila.push(NoTerminal(self.vectores[regla-1][2]))
+                    self.pila.push(Estado(accion))
+                else: 
+                    print(f'Elemento invalido...')
+                    break
+                #self.pila.tipo()
+                contador += 1
+                print('===========================================')
+            j += 1
+    # agregar que regla fue la que cumplio los objetivos.
+        
