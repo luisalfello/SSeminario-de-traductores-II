@@ -1,37 +1,27 @@
 # Seminario-de-traductores-II
-Mini analizador Sintactico
-En este trabajo analizaremos los elementos de la cadena, solo aplicando dos reglas:
+Compilador
 
-R1 = E -> id + E
+En esta versión tenemos que analizar una cadena completa, simulado un programa en c, para esto identificaremos los dintintos TOKENS y estos nos regresan un valor el cual tomara como valor una coordenada en la matriz de acciones.
 
-R2 = E -> id
+Se utilizaran 52 reglas, cada una con caracteristicas distintas todas esociadas en el archivo: Compilador.lr
 
-Metodo:
-Utilizaremos un elemento de tipo pila, en el cual añadiremos los elementos analizados, y el desplazamiento, este lo obtendremos por medio de la siguiente tabla:
+En este caso la cadena que se analizara, será la siguiente: 
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/afe00c0a-ea71-4c76-94f3-dcc67c529468)
-PROGRAMADA:
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/ea71a9d0-83ac-4aad-a073-8a8f74030bd4)
+![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/7ebaf3ba-c03c-4e97-a4e0-deaa6c50b383)
 
-Obteniendo las filas según el desplazamiento y las columnas segun el caracter analizado.
-Si el desplazamiento es postivo, entonces haremos una adicion en la pila, del elemento analizado de la cadena y el desplazamiento.
-Si es negativo se hara una reduccion, según la regla, si es R1 seran 6 reducciones, si es R2 seran 2 reducciones.
+Primero analizaremos el archivo: Compilador.lr para extraer la tabla y las reglas.
 
+Despues creamos el objeto analizador sintactico en el cual mandamos las variables anteriores y ademas la cadena la cual haremos el analisis lexico para obtener el tipo de cada token.
 
-Pruebas:
+Una ves analizamos solo calculamos el elemento que se añadira a la pila, sea un token o una regla y hacemos los pop segun la regla en la que se haya caido
 
-Ejercicio1
+# EJEMPLO
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/68695c6c-93fa-4bb5-8815-277cf02de15b)
+Primeras 9 iteraciones.
 
-Ejercicio2
+![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/b8b80c90-0f91-4aee-9fb6-67c7977fac20)
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/e43c1d15-9cae-4b89-8802-79d955e47fba)
+Ultimas 9 iteraciones.
 
-Regla 2
+![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/8d3278a5-3d1c-4460-ae4e-55bd697bc9ef)
 
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/9fcfd2f9-2777-4279-82c2-d3a5536fb892)
-
-Caso error
-
-![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/0cbfe214-547f-48aa-9672-30eb01938473)
