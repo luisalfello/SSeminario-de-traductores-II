@@ -25,3 +25,4 @@ Ultimas 9 iteraciones.
 
 ![image](https://github.com/luisalfello/SSeminario-de-traductores-II/assets/84816868/8d3278a5-3d1c-4460-ae4e-55bd697bc9ef)
 
+Como vemos la cadena es valida ya que llegamos al ultimo elemento de la pila, y se completo con 95 iteraciones.
